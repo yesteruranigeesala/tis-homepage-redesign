@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tulas International School (TIS) – Homepage Redesign</title>
+<style>
+:root{--bg:#fbf8f3;--fg:#1b1f3b;--muted:#5b607a;--card:#fff;--line:#e6e0d4;--accent:#c8102e;--accent2:#1b2a6b;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1124;--fg:#f1efe9;--muted:#a3a8c3;--card:#171b36;--line:#2a2f55;--accent:#ff4d63;--accent2:#8fa2ff}}
+:root[data-theme="dark"]{--bg:#0e1124;--fg:#f1efe9;--muted:#a3a8c3;--card:#171b36;--line:#2a2f55;--accent:#ff4d63;--accent2:#8fa2ff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:background .4s,color .4s;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+#bar{position:fixed;top:0;left:0;height:4px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;z-index:100;padding-top:env(safe-area-inset-top,0px)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-weight:800;letter-spacing:.5px}.logo span{color:var(--accent)}
+nav{display:flex;gap:22px;align-items:center}
+nav a.l{color:var(--muted);font-size:15px;transition:color .2s}nav a.l:hover{color:var(--fg)}
+@media(max-width:700px){nav a.l{display:none}}
+button,.btn{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:12px 24px;font-weight:600;transition:transform .25s,box-shadow .25s;display:inline-block}
+.btn{background:var(--accent);color:var(--on)}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px -8px var(--accent)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+#theme{width:44px;height:44px;padding:0;background:var(--card);border:1px solid var(--line);font-size:20px}
+#theme span{display:inline-block;transition:transform .5s}
+section{padding:90px 5vw;max-width:1200px;margin:auto}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.tag{color:var(--accent);font-weight:700;letter-spacing:2px;font-size:13px;text-transform:uppercase}
+h1{font-size:clamp(38px,8vw,84px);line-height:1.05;letter-spacing:-1.5px;max-width:14ch}
+h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:52ch;color:var(--muted);font-size:18px}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-top:20px}
+.stat{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.stat b{display:block;font-size:30px;color:var(--accent2)}
+h2{font-size:clamp(28px,5vw,46px);letter-spacing:-.5px;margin:6px 0 14px}
+.lead{color:var(--muted);max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.card i{font-style:normal;font-size:30px;display:block;margin-bottom:10px}
+.card h3{margin-bottom:6px}.card p{color:var(--muted);font-size:15px}
+.steps{counter-reset:s;display:grid;gap:14px;margin-top:30px}
+.step{counter-increment:s;display:flex;gap:16px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.step:before{content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--accent2);color:var(--bg);display:grid;place-items:center;font-weight:700}
+.cta{text-align:center;background:var(--accent2);color:#fff;border-radius:28px;margin:40px 5vw;max-width:none;padding:70px 5vw}
+.cta h2{margin-bottom:10px}.cta p{opacity:.85;margin-bottom:24px}
+.cta .btn{background:#fff;color:var(--accent2)}
+footer{padding:30px 5vw;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .5s ease,transform .5s ease;transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+#cur{position:fixed;top:0;left:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:200;transition:width .2s,height .2s,margin .2s,background .2s,opacity .2s;opacity:0}
+#cur.hov{width:64px;height:64px;margin:-32px 0 0 -32px;background:color-mix(in srgb,var(--accent) 18%,transparent)}
+@media(pointer:fine){body.cc,body.cc a,body.cc button{cursor:none}}
+@media(pointer:coarse){#cur{display:none}}
+@media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div><div id="cur"></div>
+<header>
+  <a class="logo" href="#top">TULAS <span>INTERNATIONAL</span> SCHOOL</a>
+  <nav>
+    <a class="l" href="#about">About</a><a class="l" href="#academics">Academics</a><a class="l" href="#admissions">Admissions</a>
+    <button id="theme" aria-label="Toggle dark and light theme"><span>🌙</span></button>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero">
+    <p class="tag rv">Tulas International School · TIS</p>
+    <h1 class="rv" style="--d:.1s">Where curious minds <em>grow</em> into leaders.</h1>
+    <p class="rv" style="--d:.2s">A nurturing, forward-looking school that blends strong academics, character building and global exposure for every child.</p>
+    <div class="row rv" style="--d:.3s"><a class="btn" href="#admissions">Apply for Admission</a><a class="btn ghost" href="#academics">Explore Academics</a></div>
+    <div class="stats">
+      <div class="stat rv" style="--d:.35s"><b>Holistic</b>Learning</div>
+      <div class="stat rv" style="--d:.45s"><b>Expert</b>Faculty</div>
+      <div class="stat rv" style="--d:.55s"><b>Modern</b>Campus</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <p class="tag rv">About Us</p>
+    <h2 class="rv">An education built on values</h2>
+    <p class="lead rv">At TIS we believe every child is unique. Our environment encourages curiosity, discipline and kindness, preparing students for a fast-changing world.</p>
+    <div class="grid">
+      <article class="card rv"><i>🎯</i><h3>Our Vision</h3><p>To shape confident, responsible global citizens.</p></article>
+      <article class="card rv" style="--d:.1s"><i>🤝</i><h3>Our Values</h3><p>Integrity, respect and a lifelong love of learning.</p></article>
+      <article class="card rv" style="--d:.2s"><i>🌍</i><h3>Global Outlook</h3><p>Exposure that connects classroom learning to the world.</p></article>
+    </div>
+  </section>
+
+  <section id="academics">
+    <p class="tag rv">Academics</p>
+    <h2 class="rv">Learning beyond the textbook</h2>
+    <div class="grid">
+      <article class="card rv"><i>📚</i><h3>Core Curriculum</h3><p>Strong foundations in languages, maths and science.</p></article>
+      <article class="card rv" style="--d:.1s"><i>🔬</i><h3>STEM &amp; Labs</h3><p>Hands-on experiments and project-based learning.</p></article>
+      <article class="card rv" style="--d:.2s"><i>🎨</i><h3>Arts &amp; Culture</h3><p>Music, dance and art that build creativity.</p></article>
+      <article class="card rv" style="--d:.3s"><i>⚽</i><h3>Sports</h3><p>Teamwork and fitness through varied sports.</p></article>
+    </div>
+  </section>
+
+  <section id="admissions">
+    <p class="tag rv">Admissions</p>
+    <h2 class="rv">Join the TIS family in 3 steps</h2>
+    <div class="steps">
+      <div class="step rv">Fill the enquiry form</div>
+      <div class="step rv" style="--d:.1s">Visit the campus &amp; interact with our team</div>
+      <div class="step rv" style="--d:.2s">Complete documentation &amp; confirm your seat</div>
+    </div>
+  </section>
+
+  <section class="cta rv">
+    <h2>Admissions are open</h2>
+    <p>Give your child the best start. Talk to our admissions team today.</p>
+    <a class="btn" href="https://tis.edu.in/" target="_blank" rel="noopener">Visit tis.edu.in</a>
+  </section>
+</main>
+<footer>© Tulas International School · Homepage redesign concept</footer>
+
+<script>
+(function(){
+  var root=document.documentElement,tb=document.getElementById('theme'),ic=tb.firstElementChild;
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches}
+  function paint(){ic.textContent=isDark()?'☀️':'🌙'}
+  try{var s=localStorage.getItem('tis-theme');if(s)root.setAttribute('data-theme',s)}catch(e){}
+  paint();
+  tb.addEventListener('click',function(){
+    var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);
+    ic.style.transform='rotate(360deg)';setTimeout(function(){ic.style.transform='';paint()},250);
+    try{localStorage.setItem('tis-theme',n)}catch(e){}
+  });
+
+  var bar=document.getElementById('bar'),tick=false;
+  function prog(){var m=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')';tick=false}
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(prog)}},{passive:true});prog();
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  if(matchMedia('(pointer:fine)').matches){
+    var c=document.getElementById('cur'),x=0,y=0,cx=0,cy=0;document.body.classList.add('cc');
+    addEventListener('mousemove',function(e){x=e.clientX;y=e.clientY;c.style.opacity=1});
+    (function loop(){cx+=(x-cx)*.18;cy+=(y-cy)*.18;c.style.transform='translate3d('+cx+'px,'+cy+'px,0)';requestAnimationFrame(loop)})();
+    document.addEventListener('mouseover',function(e){c.classList.toggle('hov',!!e.target.closest('a,button'))});
+  }
+})();
+</script>
+</body>
+</html>
